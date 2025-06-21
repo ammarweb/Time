@@ -78,7 +78,7 @@ const properties = [
       image: "/Image/Prop3.jpg"
     },
     images: [
-      "/Image/Prop3.png",
+      "/Image/Prop3.jpg",
       "/Image/c2.jpg",
       "/Image/c3.jpg"
     ]
