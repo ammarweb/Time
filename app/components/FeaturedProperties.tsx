@@ -52,7 +52,7 @@ const properties = [
     beds: 5,
     baths: 4,
     area: "520",
-    image: "/Image/Prop3.png",
+    image: "/Image/Prop3.jpg",
     badge: "Featured"
   }
 ];

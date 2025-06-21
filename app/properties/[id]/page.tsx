@@ -67,7 +67,7 @@ const properties = [
     beds: 5,
     baths: 4,
     area: "520",
-    image: "/Image/Prop3.png",
+    image: "/Image/Prop3.jpg",
     badge: "Featured",
     description: "Experience the future of living with this state-of-the-art smart home. Located in the exclusive CMC area, this residence features cutting-edge technology, premium materials, and exceptional attention to detail.",
     features: ["Smart Home System", "Garden", "Parking", "Security System", "Air Conditioning", "Furnished", "Home Theater"],
@@ -75,7 +75,7 @@ const properties = [
     agent: {
       name: "Emily Davis",
       phone: "+251 933 345 678",
-      image: "/Image/Prop3.png"
+      image: "/Image/Prop3.jpg"
     },
     images: [
       "/Image/Prop3.png",
