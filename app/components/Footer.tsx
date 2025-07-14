@@ -34,8 +34,8 @@ export default function Footer() {
               viewport={{ once: true }}
             >
               <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-                Time Real Estate
-              </h3>
+                Noble Homes  
+                 </h3>
               <p className="mt-4 text-gray-400">
                 Your trusted partner in finding the perfect property. We make real estate simple, efficient, and enjoyable.
               </p>

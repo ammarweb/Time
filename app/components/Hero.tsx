@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useRouter } from 'next/navigation';
+import { useEffect, useState } from "react";
 
 // Animation variants
 const fadeInUp = {
@@ -32,6 +33,48 @@ const floatingAnimation = {
 
 export default function Home() {
   const router = useRouter();
+
+  // Counter animation logic
+  const [properties, setProperties] = useState(0);
+  const [users, setUsers] = useState(0);
+  const [success, setSuccess] = useState(0);
+
+  useEffect(() => {
+    let propTarget = 320;
+    let usersTarget = 120;
+    let successTarget = 99;
+    let propInterval: NodeJS.Timeout, usersInterval: NodeJS.Timeout, successInterval: NodeJS.Timeout;
+
+    propInterval = setInterval(() => {
+      setProperties((prev) => {
+        if (prev < propTarget) return prev + 2;
+        clearInterval(propInterval);
+        return propTarget;
+      });
+    }, 20);
+
+    usersInterval = setInterval(() => {
+      setUsers((prev) => {
+        if (prev < usersTarget) return prev + 1;
+        clearInterval(usersInterval);
+        return usersTarget;
+      });
+    }, 25);
+
+    successInterval = setInterval(() => {
+      setSuccess((prev) => {
+        if (prev < successTarget) return prev + 1;
+        clearInterval(successInterval);
+        return successTarget;
+      });
+    },25);
+
+    return () => {
+      clearInterval(propInterval);
+      clearInterval(usersInterval);
+      clearInterval(successInterval);
+    };
+  }, []);
 
   return (
     <main    id="#"     className="min-h-screen bg-gradient-to-b from-white to-gray-50">
@@ -113,25 +156,54 @@ export default function Home() {
       >
         <div className="bg-white rounded-2xl p-8 shadow-xl">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {[
-              { number: "375K+", label: "Properties" },
-              { number: "1.5M+", label: "Happy Users" },
-              { number: "98%", label: "Success Rate" },
-              { number: "24/7", label: "Support" }
-            ].map((stat, index) => (
-              <motion.div 
-                key={index}
-                className="text-center space-y-2"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 1.2 + index * 0.2 }}
-              >
-                <div className="text-4xl font-bold text-[#3F72AF]">
-                  {stat.number}
-                </div>
-                <div className="text-gray-600 font-medium">{stat.label}</div>
-              </motion.div>
-            ))}
+            {/* Properties */}
+            <motion.div 
+              className="text-center space-y-2"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.2 }}
+            >
+              <div className="text-4xl font-bold text-[#3F72AF]">
+                {properties}+
+              </div>
+              <div className="text-gray-600 font-medium">Properties</div>
+            </motion.div>
+            {/* Happy Users */}
+            <motion.div 
+              className="text-center space-y-2"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.4 }}
+            >
+              <div className="text-4xl font-bold text-[#3F72AF]">
+                {users}+
+              </div>
+              <div className="text-gray-600 font-medium">Happy Users</div>
+            </motion.div>
+            {/* Success Rate */}
+            <motion.div 
+              className="text-center space-y-2"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.6 }}
+            >
+              <div className="text-4xl font-bold text-[#3F72AF]">
+                {success}%
+              </div>
+              <div className="text-gray-600 font-medium">Success Rate</div>
+            </motion.div>
+            {/* 24/7 Support (no animation) */}
+            <motion.div 
+              className="text-center space-y-2"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.8 }}
+            >
+              <div className="text-4xl font-bold text-[#3F72AF]">
+                24/7
+              </div>
+              <div className="text-gray-600 font-medium">Support</div>
+            </motion.div>
           </div>
         </div>
       </motion.section>

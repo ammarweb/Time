@@ -87,7 +87,15 @@ export default function FeaturedProperties() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.2 }}
               viewport={{ once: true }}
-              className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group"
+              className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group focus:outline-none focus:ring-2 focus:ring-[#3F72AF]"
+              tabIndex={0}
+              role="button"
+              onClick={() => router.push(`/properties/${property.id}`)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  router.push(`/properties/${property.id}`);
+                }
+              }}
             >
               {/* Property Image */}
               <div className="relative h-64 w-full overflow-hidden">
@@ -151,8 +159,11 @@ export default function FeaturedProperties() {
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full bg-[#3F72AF] text-white py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-[#2e5a8f] transition-colors"
-                  onClick={() => router.push(`/properties/${property.id}`)}
+                  className="w-full bg-[#3F72AF] text-white py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-[#2e5a8f] transition-colors pointer-events-none"
+                  // Removed onClick, set pointer-events-none so it doesn't block card click
+                  type="button"
+                  tabIndex={-1}
+                  aria-hidden="true"
                 >
                   View Details
                   <ArrowRight className="h-4 w-4" />

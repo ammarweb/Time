@@ -1,7 +1,7 @@
 'use client';
 
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import { motion, useScroll, useTransform, useInView } from 'framer-motion';
+import { useRef, useEffect, useState } from 'react';
 import { 
   Award, 
   Users, 
@@ -53,20 +53,56 @@ const features = [
 
 export default function WhyChooseUs() {
   const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"]
-  });
+  const isInView = useInView(containerRef, { once: true, margin: '-100px' });
 
-  const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0, 1, 0]);
+  // Counter states for each stat
+  const [counters, setCounters] = useState([
+    0, // Properties Sold
+    0, // Happy Clients
+    0, // Years Experience
+    0  // Client Satisfaction
+  ]);
+
+  useEffect(() => {
+    if (!isInView) return;
+    const targets = [500, 1000, 15, 98];
+    const increments = [5, 10, 1, 1];
+    const intervals: NodeJS.Timeout[] = [];
+
+    targets.forEach((target, i) => {
+      intervals[i] = setInterval(() => {
+        setCounters(prev => {
+          const next = [...prev];
+          if (next[i] < target) {
+            next[i] = Math.min(next[i] + increments[i], target);
+          }
+          return next;
+        });
+      }, 15 + i * 10);
+    });
+
+    // Stop intervals when done
+    const stopCheck = setInterval(() => {
+      setCounters(prev => {
+        if (prev.every((val, i) => val >= targets[i])) {
+          intervals.forEach(clearInterval);
+          clearInterval(stopCheck);
+        }
+        return prev;
+      });
+    }, 50);
+
+    return () => {
+      intervals.forEach(clearInterval);
+      clearInterval(stopCheck);
+    };
+  }, [isInView]);
 
   return (
     <section ref={containerRef} className="relative py-20 overflow-hidden bg-gradient-to-b from-gray-50 to-white">
       {/* Animated Background Elements */}
       <motion.div
         className="absolute inset-0 opacity-10"
-        style={{ y, opacity }}
       >
         <div className="absolute top-0 left-0 w-full h-full">
           <div className="absolute top-20 left-10 w-64 h-64 bg-[#3F72AF] rounded-full mix-blend-multiply filter blur-3xl" />
@@ -84,7 +120,7 @@ export default function WhyChooseUs() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-[#112D4E] mb-4">
-            Why Choose <span className="text-[#3F72AF]">Time Real Estate</span>
+            Why Choose <span className="text-[#3F72AF]">Noble Homes</span>
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto text-lg">
             Experience excellence in real estate with our commitment to quality, trust, and innovation.
@@ -110,7 +146,7 @@ export default function WhyChooseUs() {
                     initial={{ scale: 1 }}
                     whileHover={{ scale: 1.1 }}
                   >
-                    {stat.value}
+                    {counters[index]}{stat.value.replace(/\d+/g, '')}
                   </motion.h3>
                   <p className="text-gray-600">{stat.label}</p>
                 </div>

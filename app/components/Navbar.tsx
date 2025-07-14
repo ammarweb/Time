@@ -69,10 +69,10 @@ export default function Navbar() {
               transition={{ type: 'spring', stiffness: 300 }}
               className="text-2xl font-bold text-[#3F72AF]"
             >
-              <Link href="/" onClick={(e) => handleNavigation(e, '/')}>
-                Time
+              <Link href="/" onClick={(e) => handleNavigation(e, '/')}> 
+                <img src="/Image/logo.png" alt="Noble Homes Logo" className="h-16 w-auto" />
               </Link>
-            </motion.div>
+           </motion.div>
 
             {/* Desktop Menu */}
             <motion.ul 

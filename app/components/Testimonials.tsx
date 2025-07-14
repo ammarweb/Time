@@ -15,7 +15,7 @@ const testimonials = [
     role: "Property Owner",
     image: "/Image/tg.png",
     rating: 5,
-    text: "Time Real Estate made selling my property an absolute breeze. Their professionalism and market knowledge exceeded my expectations.",
+    text: "Noble Homes  made selling my property an absolute breeze. Their professionalism and market knowledge exceeded my expectations.",
     property: "Luxury Villa in Bole",
     date: "March 2024"
   },

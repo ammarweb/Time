@@ -117,7 +117,7 @@ export default function AboutPage() {
             className="text-center"
           >
             <h1 className="text-4xl md:text-6xl font-bold text-[#112D4E] mb-6">
-              About <span className="text-[#3F72AF]">Time Estate</span>
+              About <span className="text-[#3F72AF]">Noble Home</span>
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
               We are a leading real estate agency in Addis Ababa, dedicated to helping you find your perfect home and making your property dreams come true.

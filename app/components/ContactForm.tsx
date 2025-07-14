@@ -143,8 +143,8 @@ export default function ContactForm() {
                 <Mail className="h-6 w-6 text-[#3F72AF] mr-3" />
                 <h3 className="text-lg font-semibold text-[#112D4E]">Email Us</h3>
               </div>
-              <p className="text-gray-600">info@timerealestate.com</p>
-              <p className="text-gray-600">support@timerealestate.com</p>
+              <p className="text-gray-600">info@NobleHomes.com</p>
+              <p className="text-gray-600">support@NobleHomes.com</p>
             </div>
 
             <div className="bg-white p-6 rounded-lg shadow-lg">
