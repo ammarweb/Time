@@ -2,7 +2,8 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import { useInView } from "framer-motion";
 
 // Animation variants
 const fadeInUp = {
@@ -38,8 +39,11 @@ export default function Home() {
   const [properties, setProperties] = useState(0);
   const [users, setUsers] = useState(0);
   const [success, setSuccess] = useState(0);
+  const statsRef = useRef(null);
+  const statsInView = useInView(statsRef, { once: true, margin: '-100px' });
 
   useEffect(() => {
+    if (!statsInView) return;
     let propTarget = 320;
     let usersTarget = 120;
     let successTarget = 99;
@@ -74,7 +78,7 @@ export default function Home() {
       clearInterval(usersInterval);
       clearInterval(successInterval);
     };
-  }, []);
+  }, [statsInView]);
 
   return (
     <main    id="#"     className="min-h-screen bg-gradient-to-b from-white to-gray-50">
@@ -149,6 +153,7 @@ export default function Home() {
 
       {/* Stats Section */}
       <motion.section 
+        ref={statsRef}
         className="max-w-7xl mx-auto px-6 mt-24"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

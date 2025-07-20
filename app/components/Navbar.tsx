@@ -61,7 +61,7 @@ export default function Navbar() {
 
         {/* Main Navbar */}
         <nav className={`bg-white shadow-md transition-all duration-300 ${scrolled ? 'shadow-lg' : ''}`}>
-          <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+          <div className="max-w-7xl mx-auto px-4 py-1 md:py-3 flex justify-between items-center">
             {/* Logo */}
             <motion.div 
               initial={{ scale: 0.95 }}
@@ -70,7 +70,7 @@ export default function Navbar() {
               className="text-2xl font-bold text-[#3F72AF]"
             >
               <Link href="/" onClick={(e) => handleNavigation(e, '/')}> 
-                <img src="/Image/logo.png" alt="Noble Homes Logo" className="h-16 w-auto" />
+                <img src="/Image/logo.png" alt="Noble Homes Logo" className="h-12 w-auto md:h-16" />
               </Link>
            </motion.div>
 
@@ -176,7 +176,7 @@ export default function Navbar() {
                           handleNavigation(e, item === 'Home' ? '/' : (index === 4 ? '/get-in-touch' : `/${item.toLowerCase().replace(' ', '-')}`));
                           setMenuOpen(false);
                         }}
-                        className={`block py-2 px-3 rounded-md ${index === 4 ? 'bg-[#3F72AF] text-white text-center' : 'hover:bg-gray-100'}`}
+                        className={`block py-1 px-2 rounded-md text-sm ${index === 4 ? 'bg-[#3F72AF] text-white text-center' : 'hover:bg-gray-100'}`}
                       >
                         {item}
                       </Link>
